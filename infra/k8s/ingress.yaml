@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: catalog-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  rules:
+  - host: catalog.example.com
+    http:
+      paths:
+      - path: /(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: catalog-frontend
+            port: { number: 80 }
+      - path: /api/?(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: catalog-backend
+            port: { number: 3000 }

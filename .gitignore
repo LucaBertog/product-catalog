@@ -1,0 +1,22 @@
+# dependências
+node_modules/
+npm-debug.log
+yarn.lock
+
+# build
+dist/
+build/
+*.tsbuildinfo
+
+# ambiente
+.env
+.env.local
+.env.*.local
+
+# docker volumes
+infra/db_data/
+
+# IDE
+.vscode/
+.idea/
+.DS_Store

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: catalog-backend }
+spec:
+  replicas: 2
+  selector: { matchLabels: { app: catalog-backend } }
+  template:
+    metadata: { labels: { app: catalog-backend } }
+    spec:
+      containers:
+        - name: app
+          image: ghcr.io/usuario/backend:1.0.0
+          env:
+            - { name: DB_HOST, value: "your-managed-mysql-host" }
+            - { name: DB_USER, valueFrom: { secretKeyRef: { name: mysql-secret, key: user } } }
+            - { name: DB_PASS, valueFrom: { secretKeyRef: { name: mysql-secret, key: pass } } }
+            - { name: DB_NAME, value: "catalog" }
+          ports: [{ containerPort: 3000 }]
+---
+apiVersion: v1
+kind: Service
+metadata: { name: catalog-backend }
+spec:
+  type: ClusterIP
+  selector: { app: catalog-backend }
+  ports: [{ port: 3000, targetPort: 3000 }]
