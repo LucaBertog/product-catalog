@@ -1,6 +1,6 @@
 # Catálogo de Produtos Simples
 
-Este projeto é uma aplicação **Full Stack** desenvolvida como exercício e teste técnico, com foco em boas práticas de frontend, backend, banco de dados e containerização.
+Este projeto é uma aplicação **Full Stack** desenvolvida como teste técnico, com foco em boas práticas de frontend, backend, banco de dados e containerização (infra).
 
 ---
 
@@ -125,7 +125,7 @@ docker compose run --rm backend node dist/seeds/seed.js
 
 ## 📝 Autor
 
-Desenvolvido por **Lucas Bertoli** para Case.  
+Desenvolvido por **Lucas Bertoli** para Case Técnico da Empresa Brokkr.  
 Links no rodapé do app:
 - WhatsApp
 - Instagram
