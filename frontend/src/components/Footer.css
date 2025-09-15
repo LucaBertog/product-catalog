@@ -29,7 +29,7 @@
   align-items: center;
   gap: 8px;
   padding: 10px 16px;
-  border-radius: 9999px;               /* pill */
+  border-radius: 9999px;
   color: #fff;
   font-weight: 600;
   text-decoration: none;
@@ -47,12 +47,11 @@
 }
 .btn--instagram:hover { filter: brightness(1.1); }
 
-.btn--biolink { background: #2563eb; }     /* blue-600 */
-.btn--biolink:hover { background: #1d4ed8; } /* blue-700 */
+.btn--biolink { background: #2563eb; }
+.btn--biolink:hover { background: #1d4ed8; }
 
 .btn__label-strong { font-weight: 700; }
 
-/* Responsivo (opcional) */
 @media (max-width: 480px) {
   .btn { padding: 10px 14px; }
 }

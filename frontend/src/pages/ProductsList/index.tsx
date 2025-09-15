@@ -15,7 +15,7 @@ export default function ProductsList() {
   const [sort, setSort] = useState('nome,asc');
   const [params] = useSearchParams();
 
-  // lê o termo da querystring (?q=...)
+  // le o termo da querystring (?q=...)
   const search = useMemo(() => params.get('q') ?? '', [params]);
 
   const load = useCallback(async () => {
