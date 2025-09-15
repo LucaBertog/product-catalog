@@ -1,20 +1,32 @@
-import { IsInt, IsOptional, IsIn, IsUUID, IsString } from 'class-validator';
-import { Transform } from 'class-transformer';
+import { IsInt, IsIn, IsOptional, IsPositive, IsString, Min } from 'class-validator';
 
 export class QueryProductsDto {
-  @IsOptional() @Transform(({ value }) => Number(value)) @IsInt() page = 1;
-  @IsOptional() @Transform(({ value }) => Number(value)) @IsInt() limit = 10;
+  @IsOptional()
+  @IsInt()
+  @Min(1)
+  page?: number = 1;
+
+  @IsOptional()
+  @IsInt()
+  @IsPositive()
+  limit?: number = 12;
+
+  // formato: campo,direçao (ex: "preco,asc")
+  @IsString()
+  @IsOptional()
+  sort?: string = 'nome,asc';
 
   @IsOptional()
   @IsString()
   search?: string;
 
+
+  // (opcionais extras, se quiser filtrar)
   @IsOptional()
   @IsString()
-  // formato: "preco,asc" | "preco,desc" | "nome,asc" ...
-  sort?: string;
-}
+  marca?: string;
 
-export class ParamIdDto {
-  @IsUUID() id: string;
+  @IsOptional()
+  @IsString()
+  categoria?: string;
 }

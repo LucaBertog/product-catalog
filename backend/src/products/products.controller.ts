@@ -1,19 +1,21 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query, NotFoundException } from '@nestjs/common';
 import { ProductsService } from './products.service';
-import { QueryProductsDto, ParamIdDto } from './dto/query-products.dto';
+import { QueryProductsDto } from './dto/query-products.dto';
+import { ParamIdDto } from '../common/dto/param-id.dto';
 
-@Controller('api/products')
+@Controller('products')
 export class ProductsController {
-  constructor(private service: ProductsService) {}
+  constructor(private readonly service: ProductsService) {}
 
   @Get()
-  list(@Query() q: QueryProductsDto) {
-    // suporta: /api/products?page=1&limit=10&sort=preco,asc&search=fone
-    return this.service.findAll(q);
+  async list(@Query() q: QueryProductsDto) {
+    return this.service.list(q); // service trata paginação/ordenar/busca
   }
 
   @Get(':id')
-  details(@Param() params: ParamIdDto) {
-    return this.service.findOne(params.id);
+  async byId(@Param() { id }: ParamIdDto) {
+    const p = await this.service.byId(id);
+    if (!p) throw new NotFoundException('Produto não encontrado');
+    return p;
   }
 }

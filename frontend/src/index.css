@@ -3,8 +3,8 @@
   --bg: #ffffff;
   --text: #111111;
   --muted: #666666;
-  --border: #111111; /* borda preta refinada */
-  --accent: #111111; /* use preto/escuro p/ elementos */
+  --border: #111111; 
+  --accent: #111111; 
 }
 
 *{ box-sizing:border-box; }
